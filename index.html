@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="js">
+<head>
+  <meta charset="UTF-8">
+  <title>小林さんちのメイドラゴンタイトルgifジェネレーター</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <form id="post" action="">
+    <p><label><input id="fromText" type="radio" checked>文字から生成</label></p>
+    <p><input id="inputText" type="text"></p>
+    
+    <p><label><input id="fromImage" type="radio">画像から生成</label></p>
+    <p><input id="inputImage" type="file"></p>
+    
+    <p><button>生成</button></p>
+  </form>
+  <div id="progress">
+    <p>
+      Now rendering...
+    </p>
+    <canvas id="renderer" width="1280" height="720"></canvas>
+  </div>
+  <div id="result">
+    <img id="deliverable" src="" alt="">
+    <button id="copy">画像をコピーする</button>
+    <button id="download">ダウンロードする</button>
+  </div>
+<script src="./script.js"></script>
+</body>
+</html>
