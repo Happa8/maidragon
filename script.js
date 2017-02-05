@@ -73,5 +73,7 @@ $form.addEventListener("submit", e =>{
 });
 
 worker.onmessage = function (e) {
-  $deliverable.src = 'data:image/gif;base64,' + encode64(e.data);
+  const url = 'data:image/gif;base64,' + encode64(e.data);
+  $deliverable.src = url;
+  $download.href = url;
 };
