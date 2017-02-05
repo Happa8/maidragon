@@ -1,7 +1,8 @@
 const $ = (id) => document.getElementById(id);
 
 const $form = $("post");
-const $inputText = $("inputText");
+const $inputTitle = $("inputTitle");
+const $inputNumbering = $("inputNumbering");
 
 const $renderer = $("renderer");
 
@@ -12,7 +13,7 @@ const context = $renderer.getContext("2d");
 const worker = new Worker("worker.js");
 
 context.textAlign = "center";
-context.font = "80px cinecaption"
+context.font = "50px cinecaption"
 context.fillText("", 0, 0)
 
 $form.addEventListener("submit", e =>{
@@ -21,7 +22,10 @@ $form.addEventListener("submit", e =>{
   context.fillStyle = "#9dc26d";
   context.fillRect(0, 0, $renderer.width, $renderer.height);
   context.fillStyle = "#000"
-  context.fillText($inputText.value, 640, 234, 850);
+  context.font = "50px cinecaption"
+  context.fillText($inputNumbering.value, 640, 270, 600);
+  context.font = "60px cinecaption"
+  context.fillText($inputTitle.value, 640, 350, 850);
   const background = context.getImageData(
     0, 0, $renderer.width, $renderer.height);
 
