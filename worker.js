@@ -33,10 +33,11 @@ self.addEventListener("message", ({data}) => {
       break;
     case "frame":
       encoder.addFrame(data.data, true);
+      postMessage({done:false});
       break;
     case "finish":
       encoder.finish();
-      postMessage(encode64(encoder.stream().getData()));
+      postMessage({data: encode64(encoder.stream().getData()), done: true});
       break;
 	}
 })
