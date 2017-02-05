@@ -6,22 +6,14 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <form id="post" action="">
-    <p><input id="inputText" type="text"></p>
-    
-    <p><button>生成</button></p>
-  </form>
-  <div id="progress">
-    <p>
-      Now rendering...
-    </p>
-    <canvas id="renderer" width="1280" height="720"></canvas>
-  </div>
-  <div id="result">
-    <p><img id="deliverable" src="" alt=""></p>
-    <p><button id="copy">画像をコピーする</button></p>
-    <p><a id="download" download="maidragon.gif">ダウンロードする</button></p>
-  </div>
+<form id="post" action="">
+  <p><input id="inputText" type="text"></p>
+  
+  <p><button>生成</button></p>
+</form>
+<p><img id="deliverable" alt=""><br>
+<span>右クリックでダウンロード</span></p>
+<canvas id="renderer" width="1280" height="720"></canvas>
 <script src="./script.js"></script>
 </body>
 </html>
