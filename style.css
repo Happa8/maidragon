@@ -9,9 +9,9 @@
 
 #deliverable{
 	width: 90%;
+  max-width: 600px;
 }
 
-#deliverable:not([src]),
-#deliverable:not([src]) ~ span{
+#deliverable:not([src]) {
   display: none;
 }
