@@ -10,3 +10,8 @@
 #deliverable{
 	width: 90%;
 }
+
+#deliverable:not([src]),
+#deliverable:not([src]) ~ span{
+  display: none;
+}
