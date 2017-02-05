@@ -6,6 +6,8 @@ const $inputNumbering = $("inputNumbering");
 
 const $renderer = $("renderer");
 
+const $status = $("status")
+
 const $deliverable = $("deliverable");
 
 const context = $renderer.getContext("2d");
@@ -18,6 +20,7 @@ context.fillText("", 0, 0)
 
 $form.addEventListener("submit", e =>{
   e.preventDefault();
+  $status.innerText = "背景画像をレンダリング中…";
   worker.postMessage({cmd: "start"});
   context.fillStyle = "#9dc26d";
   context.fillRect(0, 0, $renderer.width, $renderer.height);
@@ -28,6 +31,8 @@ $form.addEventListener("submit", e =>{
   context.fillText($inputTitle.value, 640, 350, 850);
   const background = context.getImageData(
     0, 0, $renderer.width, $renderer.height);
+
+  $status.innerText = "フレームの画像をロード中…";
 
   Promise.all(Array.from(new Array(42))
     .map((v, i) =>
@@ -47,11 +52,20 @@ $form.addEventListener("submit", e =>{
           0, 0, $renderer.width, $renderer.height).data
       });
     }))
-    .then(() =>
-      worker.postMessage({ cmd: 'finish' }));
+    .then(() =>{
+      worker.postMessage({ cmd: 'finish' })
+    });
 });
 
-worker.onmessage = function (e) {
-  const url = 'data:image/gif;base64,' + e.data;
-  $deliverable.src = url;
+let count = 0;
+
+worker.onmessage = ({data:{done, data}}) => {
+  if(done){
+    $status.innerText = "完了。画像を右クリック/ドラッグアンドドロップで保存できます。";
+    const url = 'data:image/gif;base64,' + data;
+    $deliverable.src = url;
+  } else {
+    count++;
+    $status.innerText = `42フレーム中${count}フレームレンダリング中……`;
+  }
 };
