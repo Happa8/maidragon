@@ -14,12 +14,15 @@ const context = $renderer.getContext("2d");
 
 const worker = new Worker("worker.js");
 
+let count;
+
 context.textAlign = "center";
 context.font = "50px cinecaption"
 context.fillText("", 0, 0)
 
 $form.addEventListener("submit", e =>{
   e.preventDefault();
+  count = 0;
   $status.innerText = "背景画像をレンダリング中…";
   worker.postMessage({cmd: "start"});
   context.fillStyle = "#9dc26d";
@@ -56,8 +59,6 @@ $form.addEventListener("submit", e =>{
       worker.postMessage({ cmd: 'finish' })
     });
 });
-
-let count = 0;
 
 worker.onmessage = ({data:{done, data}}) => {
   if(done){
